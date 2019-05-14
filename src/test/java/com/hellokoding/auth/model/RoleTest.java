@@ -30,5 +30,24 @@ class RoleTest {
 		r.setUsers(users);
 		assertTrue(r.getUsers().equals(users));
 	}
+	
+	@Test
+	void testgetSetName() {
+		String name;
+		Role r = new Role();
+		r.setName("Administrador");
+		name = r.getName();
+		assertTrue(name.equals("Administrador"));
+		
+	}
+	
+	@Test
+	void testgetSetId(){
+		long id;
+		Role r =  new Role();
+		r.setId(12345L);
+		id = r.getId();
+		assertTrue(id == 12345L);
+	}
 
 }
