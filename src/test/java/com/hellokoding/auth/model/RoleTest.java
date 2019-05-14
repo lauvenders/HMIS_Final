@@ -23,7 +23,12 @@ class RoleTest {
 
 	@Test
 	void testSetUsers() {
-		fail("Not yet implemented");
+		Role r = new Role();
+		Set <User> users = new HashSet <User>();
+		User s = new User();
+		users.add(s);
+		r.setUsers(users);
+		assertTrue(r.getUsers().equals(users));
 	}
 
 }
