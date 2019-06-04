@@ -20,6 +20,8 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    
+    public User Administrador = new User();    
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -39,12 +41,17 @@ public class UserController {
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-
+        
         return "redirect:/welcome";
     }
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
+    	
+    	Administrador.setUsername("administrador");
+    	Administrador.setPassword("administrador");
+        userService.save(Administrador);
+        
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
@@ -54,8 +61,13 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/welcome"})
     public String welcome(Model model) {
         return "welcome";
+    }
+    
+    @GetMapping({"/", "/administrador"})
+    public String administrador(Model model) {
+        return "administrador";
     }
 }
